@@ -10,10 +10,15 @@ const Movies = () => {
   const movieName = searchParams.get('movieName') ?? '';
 
   useEffect(() => {
-    searchMovies(movieName)
-      .then(response => setMoviesList(response))
-      .catch(error => console.log(error));
-  }, [movieName, setSearchParams]);
+    const asyncFunc = async () => {
+      try {
+        setMoviesList(await searchMovies(movieName));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    asyncFunc();
+  }, [movieName]);
 
   const handleSubmit = e => {
     e.preventDefault();

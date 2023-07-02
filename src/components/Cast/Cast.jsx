@@ -7,9 +7,14 @@ const Cast = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getCast(id)
-      .then(response => setCast(response))
-      .catch(error => console.log(error));
+    const asyncFunc = async () => {
+      try {
+        setCast(await getCast(id));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    asyncFunc();
   }, [id]);
 
   return (

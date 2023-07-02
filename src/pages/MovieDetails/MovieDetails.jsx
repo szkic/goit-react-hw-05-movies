@@ -12,12 +12,16 @@ const MovieDetails = () => {
   const link = location.state?.from ?? '/';
 
   useEffect(() => {
-    getMovieDetails(id)
-      .then(response => {
-        setMovieDetails(response);
-        setGenres(response.genres);
-      })
-      .catch(error => console.log(error));
+    const asyncFunc = async () => {
+      try {
+        const movieDetails = await getMovieDetails(id);
+        setMovieDetails(movieDetails);
+        setGenres(movieDetails.genres);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    asyncFunc();
   }, [id]);
 
   return (

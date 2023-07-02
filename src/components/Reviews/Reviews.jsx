@@ -9,9 +9,14 @@ const Reviews = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getReviews(id)
-      .then(response => setReviews(response))
-      .catch(error => console.log(error));
+    const asyncFunc = async () => {
+      try {
+        setReviews(await getReviews(id));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    asyncFunc();
   }, [id]);
 
   return (

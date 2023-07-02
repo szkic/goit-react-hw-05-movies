@@ -6,9 +6,14 @@ const Trending = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetchMovies()
-      .then(response => setMovies(response))
-      .catch(error => console.log(error));
+    const asyncFunc = async () => {
+      try {
+        setMovies(await fetchMovies());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    asyncFunc();
   }, []);
 
   return (
