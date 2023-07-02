@@ -3,13 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 
-// import { Trending } from '../pages/Trending/Trending';
-// import { Movies } from 'pages/Movies/Movies';
-// import { NotFound } from 'pages/NotFound/NotFound';
-// import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
-// import { Cast } from 'components/Cast/Cast';
-// import { Reviews } from 'components/Reviews/Reviews';
-
 const Trending = lazy(() => import('../pages/Trending/Trending'));
 const Movies = lazy(() => import('../pages/Movies/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));

@@ -12,8 +12,6 @@ const Cast = () => {
       .catch(error => console.log(error));
   }, [id]);
 
-  console.log(cast);
-
   return (
     <ul>
       {cast.length === 0 ? (
