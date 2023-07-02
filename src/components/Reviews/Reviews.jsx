@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'services/API';
+import { Author } from './Reviews.styled';
 
 export const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -20,7 +21,7 @@ export const Reviews = () => {
       ) : (
         reviews.map(review => (
           <li key={review.id}>
-            <p style={{ fontWeight: 'bold' }}>Author: {review.author}</p>
+            <Author>Author: {review.author}</Author>
             <p>{review.content}</p>
           </li>
         ))

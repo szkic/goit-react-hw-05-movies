@@ -1,10 +1,9 @@
-import { ShowMoviesList } from 'components/ShowMoviesList';
+import { ShowMoviesList } from 'components/ShowMoviesList/ShowMoviesList';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from 'services/API';
 
 export const Trending = () => {
   const [movies, setMovies] = useState([]);
-  const address = 'movies/';
 
   useEffect(() => {
     fetchMovies()
@@ -15,7 +14,7 @@ export const Trending = () => {
   return (
     <>
       <h2>Trending today</h2>
-      <ShowMoviesList movies={movies} address={address} />
+      <ShowMoviesList movies={movies} navigate={'movies/'} />
     </>
   );
 };

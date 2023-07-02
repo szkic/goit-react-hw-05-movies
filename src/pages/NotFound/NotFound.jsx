@@ -1,8 +1,10 @@
+import { Main, Error } from './NotFound.styled';
+
 export const NotFound = () => {
   return (
-    <main style={{ textAlign: 'center' }}>
-      <b style={{ fontSize: 64 }}>404</b>
+    <Main>
+      <Error>404</Error>
       <p>Sorry, we couldn't find that page :(</p>
-    </main>
+    </Main>
   );
 };

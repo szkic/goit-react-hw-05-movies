@@ -1,5 +1,5 @@
-import { SearchInput } from 'components/SearchInput';
-import { ShowMoviesList } from 'components/ShowMoviesList';
+import { SearchInput } from 'components/SearchInput/SearchInput';
+import { ShowMoviesList } from 'components/ShowMoviesList/ShowMoviesList';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'services/API';
@@ -8,11 +8,8 @@ export const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [moviesList, setMoviesList] = useState([]);
   const movieName = searchParams.get('movieName') ?? '';
-  const address = '';
 
   useEffect(() => {
-    if (movieName === '') return;
-
     searchMovies(movieName)
       .then(response => setMoviesList(response))
       .catch(error => console.log(error));
@@ -28,7 +25,7 @@ export const Movies = () => {
   return (
     <>
       <SearchInput onSubmit={handleSubmit} />
-      <ShowMoviesList movies={moviesList} address={address} />
+      <ShowMoviesList movies={moviesList} navigate={''} />
     </>
   );
 };

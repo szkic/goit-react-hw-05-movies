@@ -1,13 +1,7 @@
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'services/API';
-
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { MovieInfo, Wrapper } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
@@ -31,14 +25,18 @@ export const MovieDetails = () => {
       <Link to={link}>
         <button>← Go back</button>
       </Link>
-      <div style={{ display: 'flex' }}>
-        <div style={{ marginRight: '30px' }}>
+      <Wrapper>
+        <MovieInfo>
           <img
-            src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+            src={
+              movieDetails.poster_path !== null
+                ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+                : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'
+            }
             alt={movieDetails.title}
             width={250}
           />
-        </div>
+        </MovieInfo>
         <div>
           <h2>{movieDetails.title}</h2>
           <p>User score: {movieDetails.vote_average * 10} %</p>
@@ -51,21 +49,27 @@ export const MovieDetails = () => {
             ))}
           </div>
         </div>
-      </div>
+      </Wrapper>
       <hr />
       <div>
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" state={{ from: link }}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={{ from: link }}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>
       <hr />
-      <Outlet />
+      <Suspense fallback={<div>Loading page...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
