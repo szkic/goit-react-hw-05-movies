@@ -1,39 +1,54 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
+import { getMovieDetails } from 'services/API';
 
-export const MovieDetails = ({ movies, genres, getId }) => {
+import { useEffect, useState } from 'react';
+
+export const MovieDetails = () => {
+  const [movieDetails, setMovieDetails] = useState({});
+  const [genres, setGenres] = useState([]);
+  const location = useLocation();
   const { id } = useParams();
 
-  // getId(id);
+  const link = location.state?.from ?? '/';
 
-  const getMovieById = movieId => movies.find(movie => movie.id === movieId);
-
-  const findGenre = genreId => genres.find(genre => genre.id === genreId);
-
-  const movie = getMovieById(+id);
-
-  console.log(movie);
+  useEffect(() => {
+    getMovieDetails(id)
+      .then(response => {
+        setMovieDetails(response);
+        setGenres(response.genres);
+      })
+      .catch(error => console.log(error));
+  }, [id]);
 
   return (
     <>
-      <button>Go back</button>
+      <Link to={link}>
+        <button>← Go back</button>
+      </Link>
       <div style={{ display: 'flex' }}>
         <div style={{ marginRight: '30px' }}>
           <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
+            src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+            alt={movieDetails.title}
             width={250}
           />
         </div>
         <div>
-          <h2>{movie.title}</h2>
-          <p>User score: {movie.vote_average * 10} %</p>
+          <h2>{movieDetails.title}</h2>
+          <p>User score: {movieDetails.vote_average * 10} %</p>
           <h3>Overview</h3>
-          <p>{movie.overview}</p>
+          <p>{movieDetails.overview}</p>
           <h4>Genres</h4>
           <div style={{ display: 'flex', gap: '10px' }}>
-            {movie.genre_ids.map(genre => {
-              return <p key={genre}>{findGenre(genre).name}</p>;
-            })}
+            {genres.map(genre => (
+              <p key={genre.id}>{genre.name}</p>
+            ))}
           </div>
         </div>
       </div>

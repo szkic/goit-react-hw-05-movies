@@ -1,3 +1,30 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getReviews } from 'services/API';
+
 export const Reviews = () => {
-  return <h2>Hello Reviews</h2>;
+  const [reviews, setReviews] = useState([]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    getReviews(id)
+      .then(response => setReviews(response))
+      .catch(error => console.log(error));
+  }, [id]);
+
+  return (
+    <ul>
+      {reviews.length === 0 ? (
+        <p>We dont have any reviews for this movie</p>
+      ) : (
+        reviews.map(review => (
+          <li key={review.id}>
+            <p style={{ fontWeight: 'bold' }}>Author: {review.author}</p>
+            <p>{review.content}</p>
+          </li>
+        ))
+      )}
+    </ul>
+  );
 };
