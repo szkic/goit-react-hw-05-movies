@@ -1,6 +1,6 @@
 import { Main, Error } from './NotFound.styled';
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <Main>
       <Error>404</Error>
@@ -8,3 +8,5 @@ export const NotFound = () => {
     </Main>
   );
 };
+
+export default NotFound;

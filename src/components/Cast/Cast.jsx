@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'services/API';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const { id } = useParams();
 
@@ -11,6 +11,8 @@ export const Cast = () => {
       .then(response => setCast(response))
       .catch(error => console.log(error));
   }, [id]);
+
+  console.log(cast);
 
   return (
     <ul>
@@ -36,3 +38,5 @@ export const Cast = () => {
     </ul>
   );
 };
+
+export default Cast;

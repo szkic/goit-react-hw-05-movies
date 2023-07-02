@@ -3,7 +3,7 @@ import { getMovieDetails } from 'services/API';
 import { Suspense, useEffect, useState } from 'react';
 import { MovieInfo, Wrapper } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const [genres, setGenres] = useState([]);
   const location = useLocation();
@@ -73,3 +73,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;

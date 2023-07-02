@@ -2,7 +2,7 @@ import { ShowMoviesList } from 'components/ShowMoviesList/ShowMoviesList';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from 'services/API';
 
-export const Trending = () => {
+const Trending = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -18,3 +18,5 @@ export const Trending = () => {
     </>
   );
 };
+
+export default Trending;

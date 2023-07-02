@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'services/API';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [moviesList, setMoviesList] = useState([]);
   const movieName = searchParams.get('movieName') ?? '';
@@ -29,3 +29,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;
