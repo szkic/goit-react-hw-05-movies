@@ -7,3 +7,7 @@ export const Wrapper = styled.div`
 export const MovieInfo = styled.div`
   margin-right: 30px;
 `;
+
+export const Button = styled.button`
+  cursor: pointer;
+`;

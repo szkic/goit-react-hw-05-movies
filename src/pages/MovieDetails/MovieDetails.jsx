@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'services/API';
 import { Suspense, useEffect, useState } from 'react';
-import { MovieInfo, Wrapper } from './MovieDetails.styled';
+import { MovieInfo, Wrapper, Button } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
@@ -23,7 +23,7 @@ const MovieDetails = () => {
   return (
     <>
       <Link to={link}>
-        <button>← Go back</button>
+        <Button>← Go back</Button>
       </Link>
       <Wrapper>
         <MovieInfo>
