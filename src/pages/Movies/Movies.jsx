@@ -7,23 +7,23 @@ import { searchMovies } from 'services/API';
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [moviesList, setMoviesList] = useState([]);
-  const movieName = searchParams.get('movieName') ?? '';
+  const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
     const asyncFunc = async () => {
       try {
-        setMoviesList(await searchMovies(movieName));
+        setMoviesList(await searchMovies(query));
       } catch (error) {
         console.log(error);
       }
     };
     asyncFunc();
-  }, [movieName]);
+  }, [query]);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    setSearchParams({ movieName: form.elements.movieName.value });
+    setSearchParams({ query: form.elements.query.value });
     form.reset();
   };
 

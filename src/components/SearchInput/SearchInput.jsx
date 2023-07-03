@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const SearchInput = ({ onSubmit }) => {
   return (
     <Wrapper onSubmit={onSubmit}>
-      <Input type="text" name="movieName" required />
+      <Input type="text" name="query" required />
       <button type="submit">Search</button>
     </Wrapper>
   );
