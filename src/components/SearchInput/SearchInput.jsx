@@ -1,4 +1,5 @@
 import { Wrapper, Input } from './SearchInput.styled';
+import PropTypes from 'prop-types';
 
 export const SearchInput = ({ onSubmit }) => {
   return (
@@ -7,4 +8,8 @@ export const SearchInput = ({ onSubmit }) => {
       <button type="submit">Search</button>
     </Wrapper>
   );
+};
+
+SearchInput.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

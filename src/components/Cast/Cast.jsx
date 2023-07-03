@@ -26,7 +26,7 @@ const Cast = () => {
           <li key={el.id}>
             <img
               src={
-                el.profile_path !== null
+                el.profile_path
                   ? `https://image.tmdb.org/t/p/w500${el.profile_path}`
                   : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'
               }
