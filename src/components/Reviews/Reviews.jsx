@@ -22,7 +22,9 @@ const Reviews = () => {
   return (
     <ul>
       {reviews.length === 0 ? (
-        <p>We dont have any reviews for this movie</p>
+        <li style={{ listStyle: 'none' }}>
+          We dont have any reviews for this movie
+        </li>
       ) : (
         reviews.map(review => (
           <li key={review.id}>

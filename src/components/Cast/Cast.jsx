@@ -20,7 +20,9 @@ const Cast = () => {
   return (
     <ul>
       {cast.length === 0 ? (
-        <p>We dont have cast information for this movie</p>
+        <li style={{ listStyle: 'none' }}>
+          We dont have cast information for this movie
+        </li>
       ) : (
         cast.map(el => (
           <li key={el.id}>
